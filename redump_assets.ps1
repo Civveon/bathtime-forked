@@ -1,1 +1,1 @@
-Copy-Item -Path "./BathTime/assets" -Destination "./BathTime/bin/Debug/Mods/BathTime/assets" -Recurse
+Copy-Item -Path "./BathTime/assets" -Destination "./BathTime/bin/Debug/Mods/BathTime" -Recurse -Force

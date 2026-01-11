@@ -1,0 +1,523 @@
+{
+	"editor": {
+		"backDropShape": "",
+		"collapsedPaths": "",
+		"allAngles": false,
+		"entityTextureMode": false,
+		"singleTexture": false,
+		"vsFormatConverted": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+		"color": [16, 16]
+	},
+	"textures": {
+		"color": "game:block/cloth/linen/normal1"
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [8, 2.2, 8.5],
+			"to": [8, 2.2, 8.5],
+			"rotationOrigin": [8, 2.2, 8.5],
+			"children": [
+				{
+					"name": "Cloth-extended1",
+					"from": [0, -1.8, -2.1],
+					"to": [0, -1.8, -2.1],
+					"rotationOrigin": [0, -1.8, -2.1],
+					"rotationX": 10,
+					"children": [
+						{
+							"name": "cloth-edge1",
+							"from": [-5.9, 0.72684, 1.77803],
+							"to": [5.8, 1.22684, 2.77803],
+							"rotationOrigin": [6.8, 2.67398, 9.45504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [0, 0, 11, 0.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [5.5, 8, 6.5, 8.5], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [4.5, 4, 15.5, 4.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 4.5, 5, 5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [3, 5, 14, 6], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [1, 4, 12, 5], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": -5.5,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "cloth-edge2",
+							"from": [-5.9, 1.26001, 3.6511],
+							"to": [5.9, 1.76001, 4.6511],
+							"rotationOrigin": [6.8, 2.67398, 9.45504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [0, 0, 7, 0.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 5, 4.5, 5.5], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [3, 7, 10, 7.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [3.5, 4, 4.5, 4.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [3.5, 4, 10.5, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [3.5, 5, 10.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": -10,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "cloth-edge3",
+							"from": [-5.9, 1.26001, 2.6511],
+							"to": [5.9, 1.76001, 3.6511],
+							"rotationOrigin": [6.8, 2.67398, 9.45504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [0, 0, 7, 0.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 5, 4.5, 5.5], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [3, 7, 10, 7.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [3.5, 4, 4.5, 4.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [3.5, 4, 10.5, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [3.5, 5, 10.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": -10,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.8, 0, 0.9],
+							"to": [5.9, 0.5, 2],
+							"rotationOrigin": [6.8, 2.67398, 9.45504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.9, -3.83747, 2.02339],
+							"to": [5.85, -3.33747, 3.32339],
+							"rotationOrigin": [6.8, 2.67398, 9.45504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": 29,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.8, -7.12977, 7.13225],
+							"to": [5.9, -6.62977, 8.43225],
+							"rotationOrigin": [6.8, 2.67398, 9.45504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": 71.5,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.9, 0.13258, 1.39185],
+							"to": [5.85, 0.63258, 2.69185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": 102,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.8, 0.33258, 1.29185],
+							"to": [5.9, 0.83258, 2.59185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": 134.5,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.9, 0.43258, 1.19185],
+							"to": [5.75, 0.93258, 2.49185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": 169.5,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.8, 0.43258, 0.89185],
+							"to": [5.8, 0.93258, 2.19185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": -160.5,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.9, 0.33258, 0.89185],
+							"to": [5.9, 0.83258, 2.19185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": -123,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.8, 0.33258, 1.19185],
+							"to": [5.8, 0.83258, 2.49185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": -78,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.9, 0.53258, 1.59185],
+							"to": [5.9, 1.03258, 2.89185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": -28,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.7, 0.53258, 0.89185],
+							"to": [5.7, 1.03258, 2.19185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": -10.5,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.8, 0.43258, 0.99185],
+							"to": [5.8, 0.93258, 2.29185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": 32,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.9, 0.53258, 1.49185],
+							"to": [5.9, 1.03258, 2.79185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": 82,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.8, 0.83258, 1.49185],
+							"to": [5.8, 1.33258, 2.79185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": 124.5,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.9, 1.03258, 1.19185],
+							"to": [5.9, 1.53258, 2.49185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": 169.5,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.8, 1.03258, 1.09185],
+							"to": [5.8, 1.53258, 2.39185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": -135.5,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.9, 1.13258, 1.19185],
+							"to": [5.9, 1.63258, 2.49185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": -75.5,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.8, 1.23258, 1.19185],
+							"to": [5.8, 1.73258, 2.49185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": -15.5,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						},
+						{
+							"name": "Cloth-extended1_geo",
+							"from": [-5.9, 1.23258, 1.19185],
+							"to": [5.9, 1.73258, 2.49185],
+							"rotationOrigin": [6.8, 2.27398, 1.75504],
+							"uv": [0, 0],
+							"shade": true,
+							"faces": {
+								"north": {"texture": "#color", "uv": [3.5, 3, 15, 3.5], "autoUv": false, "snapUv": false},
+								"east": {"texture": "#color", "uv": [3.5, 6.5, 5.5, 7], "autoUv": false, "snapUv": false},
+								"south": {"texture": "#color", "uv": [2, 3, 13.5, 3.5], "autoUv": false, "snapUv": false},
+								"west": {"texture": "#color", "uv": [4, 5, 6, 5.5], "autoUv": false, "snapUv": false},
+								"up": {"texture": "#color", "uv": [1.5, 3, 13, 5], "autoUv": false, "snapUv": false},
+								"down": {"texture": "#color", "uv": [0, 4, 11.5, 6], "autoUv": false, "snapUv": false}
+							},
+							"rotationX": 52,
+							"stepParentName": "",
+							"climateColorMap": "",
+							"gradientShade": false,
+							"renderPass": 0,
+							"seasonColorMap": ""
+						}
+					],
+					"stepParentName": ""
+				}
+			],
+			"stepParentName": ""
+		}
+	],
+	"animations": []
+}
