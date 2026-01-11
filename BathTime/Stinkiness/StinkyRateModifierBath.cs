@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Config;
 using Vintagestory.GameContent;
 
 namespace BathTime;
@@ -67,8 +70,53 @@ public class StinkyRateModifierBath : IStinkyRateModifier
 
     public bool IsActive => EntityBehaviorStinky.IsBathing(entity);
 
+    private void MakeTowelsWetInInventory()
+    {
+        if (entity.Api.Side == EnumAppSide.Client) return;
+        if (entity is EntityPlayer playerEntity)
+        {
+            if (entity.Api.World.PlayerByUid(playerEntity.PlayerUID) is IPlayer player)
+            {
+                IPlayerInventoryManager pim = player.InventoryManager;
+
+                List<ItemSlot> towelSlots = [];
+
+                if (pim.GetOwnInventory(GlobalConstants.backpackInvClassName) is InventoryBase backpackInventory)
+                {
+                    towelSlots.AddRange([.. backpackInventory.Where(
+                        itemSlot =>
+                        {
+                            return itemSlot.Itemstack?.Item is ItemTowel;
+                        }
+                    )]);
+                }
+
+                if (pim.GetOwnInventory(GlobalConstants.hotBarInvClassName) is InventoryBase hotBarInventory)
+                {
+                    towelSlots.AddRange([.. hotBarInventory.Where(
+                        itemSlot =>
+                        {
+                            return itemSlot.Itemstack?.Item is ItemTowel;
+                        }
+                    )]);
+                }
+
+
+                foreach (ItemSlot towelSlot in towelSlots)
+                {
+                    if (towelSlot.Itemstack.Collectible.GetBehavior<CollectibleBehaviorTowel>() is CollectibleBehaviorTowel towelBehavior)
+                    {
+                        towelBehavior.SetWetness(towelSlot, 1.0);
+                        towelSlot.MarkDirty();
+                    }
+                }
+            }
+        }
+    }
+
     public double ModifyRate(double rateMultiplier)
     {
+        MakeTowelsWetInInventory();
         double accumulator = config.bathingRateModifier;
 
         Room room = roomRegistry.GetRoomForPosition(entity.Pos.AsBlockPos);

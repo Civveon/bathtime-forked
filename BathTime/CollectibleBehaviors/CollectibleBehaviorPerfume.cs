@@ -13,6 +13,8 @@ public class PerfumeConfig : IToiletryConfig
     public float StinkinessReduction { get; set; } = 0.3f;
 
     public float CooldownTimeHours { get; set; } = 8;
+
+    public bool ConsumeOnUse { get; set; } = true;
 }
 
 public class CollectibleBehaviorPerfume(CollectibleObject collObj) : CollectibleBehaviorToiletry<PerfumeBuff, PerfumeConfig>(collObj)
@@ -25,7 +27,7 @@ public class CollectibleBehaviorPerfume(CollectibleObject collObj) : Collectible
         else return false;
     }
 
-    protected override void OnToiletryApply(Entity targetEntity, PerfumeBuff rateModifier)
+    protected override void OnToiletryApply(Entity fromEntity, Entity targetEntity, PerfumeBuff rateModifier, ItemSlot toiletrySlot)
     {
         if (targetEntity.Api.Side == EnumAppSide.Server)
         {

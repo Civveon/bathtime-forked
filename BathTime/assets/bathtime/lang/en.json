@@ -2,5 +2,27 @@
     "soap-item-info": "Application time: {0}\nSoapy duration: {1}\nStink rate reduction: {2}",
     "perfume-item-info": "Application time: {0}\nPerfuming cooldown: {1}\nStinkiness reduction: {2}",
     "heldhelp-soap": "Soap up!",
-    "heldhelp-perfume": "Apply perfume"
+    "heldhelp-perfume": "Apply perfume",
+    // Towel stuff
+    "towel-item-info-soakingwet": "<font color=\"#1097b4\">Soaking wet: {0}</font>",
+    "towel-item-info-wet": "<font color=\"#309bb3\">Wet: {0}</font>",
+    "towel-item-info-slightlywet": "<font color=\"#6bb9c9\">Slighty wet: {0}</font>",
+    "towel-item-info-dry": "<font color=\"burlywood\">Warm and dry</font>",
+    "towel-item-info-fold": "Needs to be folded before stacking with other dry towels.",
+    "heldhelp-towel": "Towel off!",
+    "handhelp-towel-wet": "This towel is soaked!",
+    "item-towel-plain": "Plain towel",
+    "item-towel-mordant": "Mordant towel",
+    "item-towel-blue": "Blue towel",
+    "item-towel-red": "Red towel",
+    "item-towel-yellow": "Yellow towel",
+    "item-towel-green": "Green towel",
+    "item-towel-purple": "Purple towel",
+    "item-towel-pink": "Pink towel",
+    "item-towel-orange": "Orange towel",
+    "item-towel-brown": "Brown towel",
+    "item-towel-gray": "Gray towel",
+    "item-towel-black": "Black towel",
+    "item-towel-white": "White towel",
+    "bathtime:item-handbooktext-bathtime:towel-*": "A <i>delightful</i> fluffy towel. Use this to dry off after taking a bath or getting caught out in the rain.\n\nYou will have to let it dry off before you can use it again.\n\nBe careful not to carry it with you when you go diving into lakes, or it'll get soaking wet!"
 }

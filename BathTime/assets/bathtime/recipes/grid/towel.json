@@ -1,0 +1,18 @@
+{
+    "ingredientPattern": "CC,CC",
+    "ingredients": {
+        "C": {
+            "type": "item",
+            "code": "game:cloth-*",
+            "quantity": 1,
+            "name": "cloth"
+        }
+    },
+    "width": 2,
+    "height": 2,
+    "output": {
+        "type": "item",
+        "code": "towel-{cloth}",
+        "quantity": 1
+    }
+}

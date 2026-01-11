@@ -10,6 +10,8 @@ public interface IToiletryConfig
     public float ApplicationTimeSec { get; set; }
 
     public float CooldownTimeHours { get; set; }
+
+    public bool ConsumeOnUse { get; set; }
 }
 
 public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject collObj) : CollectibleBehavior(collObj) where TModifier : IStinkyRateModifier where TConfig : IToiletryConfig, new()
@@ -17,7 +19,16 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
     protected TConfig config { get; set; } = new();
 
     private IProgressBar? progressBarRender;
-    private ICoreAPI? api;
+
+    protected ICoreAPI? api;
+
+    protected EnumHandling startHandling = EnumHandling.Handled;
+
+    protected EnumHandling stepHandling = EnumHandling.Handled;
+
+    protected EnumHandling cancelHandling = EnumHandling.Handled;
+
+    protected EnumHandling stopHandling = EnumHandling.Handled;
 
     public override void Initialize(JsonObject properties)
     {
@@ -33,12 +44,14 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
 
     protected virtual bool IsValidTarget(Entity targetEntity) { return false; }
 
-    protected virtual void OnToiletryApply(Entity targetEntity, TModifier rateModifier) { }
+    protected virtual bool IsValidToiletry(ItemSlot toiletrySlot) { return true; }
+
+    protected virtual void OnToiletryApply(Entity byEntity, Entity targetEntity, TModifier rateModifier, ItemSlot toiletrySlot) { }
 
     public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
     {
         handHandling = EnumHandHandling.PreventDefault;
-        handling = EnumHandling.Handled;
+        handling = startHandling;
 
         if (api?.Side == EnumAppSide.Client)
         {
@@ -50,8 +63,7 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
 
     public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
     {
-        base.OnHeldInteractStep(secondsUsed, slot, byEntity, blockSel, entitySel, ref handling);
-        handling = EnumHandling.Handled;
+        handling = stepHandling;
 
         float progress = secondsUsed / config.ApplicationTimeSec;
         if (progressBarRender is not null)
@@ -63,6 +75,7 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
 
     public override bool OnHeldInteractCancel(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, EnumItemUseCancelReason cancelReason, ref EnumHandling handled)
     {
+        handled = cancelHandling;
         api?.ModLoader.GetModSystem<ModSystemProgressBar>()?.RemoveProgressbar(progressBarRender);
         return base.OnHeldInteractCancel(secondsUsed, slot, byEntity, blockSel, entitySel, cancelReason, ref handled);
     }
@@ -70,19 +83,26 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
     public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
     {
         api?.ModLoader.GetModSystem<ModSystemProgressBar>()?.RemoveProgressbar(progressBarRender);
-
-        handling = EnumHandling.Handled;
-
+        handling = stopHandling;
         Entity targetEntity = byEntity;
         if (entitySel is not null) targetEntity = entitySel.Entity;
 
-        if (IsValidTarget(targetEntity))
+        if (secondsUsed < config.ApplicationTimeSec)
+        {
+            handling = EnumHandling.PassThrough;
+            return;
+        }
+
+        if (IsValidTarget(targetEntity) && IsValidToiletry(slot))
         {
             if (targetEntity.GetBehavior<EntityBehaviorStinky>()?.GetRateModifier<TModifier>() is not TModifier rateModifier) return;
+            OnToiletryApply(byEntity, targetEntity, rateModifier, slot);
 
-            OnToiletryApply(targetEntity, rateModifier);
-            slot.TakeOut(1);
-            slot.MarkDirty();
+            if (config.ConsumeOnUse)
+            {
+                slot.TakeOut(1);
+                slot.MarkDirty();
+            }
         }
     }
 }

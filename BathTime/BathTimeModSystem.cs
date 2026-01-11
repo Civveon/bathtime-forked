@@ -7,6 +7,8 @@ using Vintagestory.API.Util;
 using System;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Config;
+using HarmonyLib;
 
 namespace BathTime;
 
@@ -19,8 +21,13 @@ public class BathTimeModSystem : ModSystem
     {
         api.RegisterEntityBehaviorClass(Constants.MOD_ID + ".stinky", typeof(EntityBehaviorStinky));
 
+        api.RegisterItemClass(Constants.MOD_ID + ".towel", typeof(ItemTowel));
+
         api.RegisterCollectibleBehaviorClass(Constants.MOD_ID + ".soap", typeof(CollectibleBehaviorSoap));
         api.RegisterCollectibleBehaviorClass(Constants.MOD_ID + ".perfume", typeof(CollectibleBehaviorPerfume));
+        api.RegisterCollectibleBehaviorClass(Constants.MOD_ID + ".towel", typeof(CollectibleBehaviorTowel));
+
+        GlobalConstants.IgnoredStackAttributes = GlobalConstants.IgnoredStackAttributes.AddToArray(Constants.TOWEL_WETNESS_KEY);
     }
 
     private void SyncConfigToPlayer(IPlayer player, BathtimeConfig config)
@@ -56,6 +63,7 @@ public class BathTimeModSystem : ModSystem
             Constants.RELOAD_COMMAND
         );
 
+        # region ServerCommands
         sapi.ChatCommands.Create(Constants.MOD_ID)
             .RequiresPrivilege(Privilege.controlserver)
             .WithDescription("Commands for controlling server side Bathtime mod.")
@@ -138,6 +146,7 @@ public class BathTimeModSystem : ModSystem
                     }
                 )
             .EndSub();
+        #endregion
     }
 
     public override void StartClientSide(ICoreClientAPI capi)

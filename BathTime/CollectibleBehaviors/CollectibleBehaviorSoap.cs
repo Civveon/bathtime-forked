@@ -13,6 +13,8 @@ public class SoapConfig : IToiletryConfig
     public float CooldownTimeHours { get; set; } = 0.5f;
 
     public float StinkRateReduction { get; set; } = 50f;
+
+    public bool ConsumeOnUse { get; set; } = true;
 }
 
 public class CollectibleBehaviorSoap(CollectibleObject collObj) : CollectibleBehaviorToiletry<SoapBuff, SoapConfig>(collObj)
@@ -25,7 +27,7 @@ public class CollectibleBehaviorSoap(CollectibleObject collObj) : CollectibleBeh
         else return false;
     }
 
-    protected override void OnToiletryApply(Entity targetEntity, SoapBuff rateModifier)
+    protected override void OnToiletryApply(Entity fromEntity, Entity targetEntity, SoapBuff rateModifier, ItemSlot toiletrySlot)
     {
         rateModifier.stinkRateReduction = config.StinkRateReduction;
         rateModifier.Apply(config.CooldownTimeHours);

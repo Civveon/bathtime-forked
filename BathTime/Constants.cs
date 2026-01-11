@@ -12,6 +12,12 @@ internal static class Constants
 
     public static string PERFUME_BUFF_KEY = "perfumed";
 
+    public static string DUMMY_BUFF_KEY = "dummy_buff";
+
+    public static string TOWEL_WETNESS_KEY = "towel_wetness";
+
+    public static string TOWEL_LAST_UPDATED_KEY = "towel_last_updated";
+
     public static string CONFIG_NAME = MOD_ID + ".json";
 
     public static string CLIENT_CONFIG_NAME = MOD_ID + "_client.json";
