@@ -153,7 +153,6 @@ public class StinkyRateModifierBath : IStinkyRateModifier
                         BlockEntityBoiler beb = blockAccess.GetBlockEntity<BlockEntityBoiler>(blockPos);
                         if (beb is not null && (beb.InputStackTemp >= 80.0f))
                         {
-                            entity.Api.Logger.Notification("Healing with a boiler");
                             accumulator *= config.bathingWithBoilerMultiplier;
 
                             // Also heal entity if they are bathing in a boiler bath.

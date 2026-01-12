@@ -51,14 +51,12 @@ class ItemTowel : Item
             int itemsInSink = op.SinkSlot.StackSize - op.MovedQuantity;
             int itemsMoved = op.MovedQuantity;
 
-            api.Logger.Notification($"Moving {itemsMoved} towels of wetness {sourceWetness} into {itemsInSink} towels of wetness {sinkWetness}");
             // Use cubic mean to punish stacking wet towels with dry towels instead of arithmetic mean.
             // Merging wetness 1.0 into 3 wetness 0.0 towels => wetness ~0.625.
             resWetness += itemsMoved * Math.Pow(sourceWetness, 3.0);
             resWetness += itemsInSink * Math.Pow(sinkWetness, 3.0);
             resWetness /= op.SinkSlot.StackSize;
             resWetness = Math.Pow(resWetness, 1 / 3.0);
-            api.Logger.Notification($"Resulting wetness is {resWetness}");
 
             sinkTowelBehavior.SetWetness(op.SinkSlot, resWetness);
             op.SinkSlot.MarkDirty();
