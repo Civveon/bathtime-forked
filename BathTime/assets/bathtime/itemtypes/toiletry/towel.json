@@ -8,7 +8,6 @@
                 "layout": "Quadrants",
                 "upSolid": true,
                 "placeRemoveSound": "game:sounds/block/leather",
-                "stackingModel": "game:item/resource/cloth-pile",
                 "collisionBox": {
                     "x1": 0,
                     "y1": 0,
@@ -27,7 +26,6 @@
         "base": "bathtime:item/toiletry/towel"
     },
     "attributes": {
-        "clothingRepairStrength": 0.5,
         "displaycaseable": true,
         "shelvable": true,
         "onDisplayTransform": {
@@ -97,7 +95,7 @@
         "general": [
             "*"
         ],
-        "items": [
+        "bathtime": [
             "*"
         ]
     },
