@@ -82,16 +82,17 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
 
     public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
     {
-        api?.ModLoader.GetModSystem<ModSystemProgressBar>()?.RemoveProgressbar(progressBarRender);
-        handling = stopHandling;
-        Entity targetEntity = byEntity;
-        if (entitySel is not null) targetEntity = entitySel.Entity;
-
         if (secondsUsed < config.ApplicationTimeSec)
         {
             handling = EnumHandling.PassThrough;
             return;
         }
+
+        api?.ModLoader.GetModSystem<ModSystemProgressBar>()?.RemoveProgressbar(progressBarRender);
+        handling = stopHandling;
+        Entity targetEntity = byEntity;
+        if (entitySel is not null) targetEntity = entitySel.Entity;
+
 
         if (IsValidTarget(targetEntity) && IsValidToiletry(slot))
         {
