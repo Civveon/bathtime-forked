@@ -9,6 +9,11 @@ namespace BathTime;
 
 public partial class BathtimeConfig : IConfig
 {
+    public double stinkinessDetectionRangeMultiplier { get; set; } = 0.5f;
+}
+
+public partial class BathtimeConfig : IConfig
+{
     public double maxStinkinessDays { get; set; } = 2.0;
 }
 
@@ -99,6 +104,18 @@ internal class EntityBehaviorStinky : EntityBehavior
         {
             double clampedValue = Math.Clamp(value, 0.0, 1.0);
             entity.SetDoubleAttribute(Constants.STINKINESS_KEY, clampedValue);
+
+            if (entity.Api.Side == EnumAppSide.Server)
+            {
+                // Increase detection range by up to 50% based on stinkiness.
+                entity.Stats.Set(
+                    "animalSeekingRange",
+                    Constants.STINKINESS_KEY,
+                    (float)clampedValue * (float)config.stinkinessDetectionRangeMultiplier,
+                    // Don't persist as we will just set this again next time stinkiness ticks.
+                    false
+                );
+            }
         }
     }
 
