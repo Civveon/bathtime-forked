@@ -17,6 +17,8 @@ public class BathTimeModSystem : ModSystem
 {
     StinkParticleSystem? stinkParticleSystem;
 
+    Harmony? harmony;
+
     public override void Start(ICoreAPI api)
     {
         api.RegisterEntityBehaviorClass(Constants.MOD_ID + ".stinky", typeof(EntityBehaviorStinky));
@@ -151,6 +153,9 @@ public class BathTimeModSystem : ModSystem
 
     public override void StartClientSide(ICoreClientAPI capi)
     {
+        harmony = new Harmony(Mod.Info.ModID);
+        harmony.PatchAll();
+
         BathtimeBaseConfig<BathtimeClientConfig>.LoadStoredConfig(capi);
 
         stinkParticleSystem = new StinkParticleSystem(capi);
@@ -217,5 +222,11 @@ public class BathTimeModSystem : ModSystem
                     }
                 )
             .EndSub();
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+        harmony?.UnpatchAll(Mod.Info.ModID);
     }
 }

@@ -4,6 +4,13 @@
     "perfume-item-info": "Application time: {0}\nPerfuming cooldown: {1}\nStinkiness reduction: {2}",
     "heldhelp-soap": "Soap up!",
     "heldhelp-perfume": "Apply perfume",
+    // Stink levels
+    "stinkiness-level-extreme": "You reek like a corpse.",
+    "stinkiness-level-high": "You have a pungent odour.",
+    "stinkiness-level-medium": "You could do with taking a bath.",
+    "stinkiness-level-low": "You're a little sweaty.",
+    "stinkiness-level-clean": "You're clean as a whistle.",
+    "sniff": "Check your pits",
     // Towel stuff
     "towel-item-info-soakingwet": "<font color=\"#1097b4\">Soaking wet: {0}</font>",
     "towel-item-info-wet": "<font color=\"#309bb3\">Wet: {0}</font>",
