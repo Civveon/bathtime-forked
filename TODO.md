@@ -3,5 +3,4 @@
 - Add soap and perfume patches to more mods
 
 - Make Buffs inherit EntityBehavior for better state management
-
-- Pomodoro mod?
+- Add messages for when you're soapy or perfumed and you smell your pits

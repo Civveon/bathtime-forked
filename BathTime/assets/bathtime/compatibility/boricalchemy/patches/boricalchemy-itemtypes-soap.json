@@ -1,0 +1,21 @@
+[
+  {
+    "op": "addmerge",
+    "path": "/behaviors",
+    "value": [
+      {
+        "name": "bathtime.soap",
+        "properties": {
+          "CooldownTimeHours": 0.5,
+          "StinkRateReduction": 50
+        }
+      }
+    ],
+    "file": "boricalchemy:itemtypes/soap.json",
+    "dependsOn": [
+      {
+        "modid": "boricalchemy"
+      }
+    ]
+  }
+]

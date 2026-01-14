@@ -1,0 +1,207 @@
+
+  [
+  {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-blue",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-blue",
+            "quantity": 1
+        }
+    },
+    {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-red",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-red",
+            "quantity": 1
+        }
+    },
+    {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-yellow",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-yellow",
+            "quantity": 1
+        }
+    },
+    {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-green",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-green",
+            "quantity": 1
+        }
+    },
+    {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-purple",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-purple",
+            "quantity": 1
+        }
+    },
+    {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-pink",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-pink",
+            "quantity": 1
+        }
+    },
+    {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-orange",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-orange",
+            "quantity": 1
+        }
+    },
+    {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-brown",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-brown",
+            "quantity": 1
+        }
+    },
+    {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-gray",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-gray",
+            "quantity": 1
+        }
+    },
+    {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-black",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-black",
+            "quantity": 1
+        }
+    },
+    {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-white",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-white",
+            "quantity": 1
+        }
+    },
+    {
+        "ingredientPattern": "CC,CC",
+        "ingredients": {
+            "C": {
+                "type": "item",
+                "code": "wool:cloth-wool-plain",
+                "quantity": 1
+            }
+        },
+        "width": 2,
+        "height": 2,
+        "output": {
+            "type": "item",
+            "code": "bathtime:towel-plain",
+            "quantity": 1
+        }
+    }
+]
