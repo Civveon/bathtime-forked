@@ -173,5 +173,6 @@ internal class EntityBehaviorStinky : EntityBehavior
         RegisterRateModifier(new SoapBuff(entity));
         RegisterRateModifier(new PerfumeBuff(entity));
         RegisterRateModifier(new DummyBuff(entity));
+        RegisterRateModifier(new StinkRateModifierHygeine(entity));
     }
 }

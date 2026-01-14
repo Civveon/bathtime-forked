@@ -8,6 +8,8 @@ internal static class Constants
 
     public static string STINKINESS_KEY = "stinkiness";
 
+    public static string PERSONAL_HYGEINE_KEY = "personalHygeine";
+
     public static string SOAPY_BUFF_KEY = "soapy";
 
     public static string PERFUME_BUFF_KEY = "perfumed";
