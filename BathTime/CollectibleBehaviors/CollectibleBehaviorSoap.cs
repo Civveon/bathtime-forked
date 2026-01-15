@@ -27,6 +27,31 @@ public class CollectibleBehaviorSoap(CollectibleObject collObj) : CollectibleBeh
         else return false;
     }
 
+    public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection? entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
+    {
+        Entity targetEntity = byEntity;
+        if (entitySel is not null) targetEntity = entitySel.Entity;
+        if (!EntityBehaviorStinky.IsBathing(targetEntity))
+        {
+            handling = EnumHandling.PassThrough;
+            handHandling = EnumHandHandling.NotHandled;
+            return;
+        }
+        base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handHandling, ref handling);
+    }
+
+    public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection? entitySel, ref EnumHandling handling)
+    {
+        Entity targetEntity = byEntity;
+        if (entitySel is not null) targetEntity = entitySel.Entity;
+        if (!EntityBehaviorStinky.IsBathing(targetEntity))
+        {
+            handling = EnumHandling.PassThrough;
+            return false;
+        }
+        return base.OnHeldInteractStep(secondsUsed, slot, byEntity, blockSel, entitySel, ref handling);
+    }
+
     protected override void OnToiletryApply(Entity fromEntity, Entity targetEntity, SoapBuff rateModifier, ItemSlot toiletrySlot)
     {
         rateModifier.stinkRateReduction = config.StinkRateReduction;

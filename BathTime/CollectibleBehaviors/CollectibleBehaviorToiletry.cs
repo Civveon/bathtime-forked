@@ -48,7 +48,7 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
 
     protected virtual void OnToiletryApply(Entity byEntity, Entity targetEntity, TModifier rateModifier, ItemSlot toiletrySlot) { }
 
-    public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
+    public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection? entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
     {
         handHandling = EnumHandHandling.PreventDefault;
         handling = startHandling;
@@ -61,7 +61,7 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
         }
     }
 
-    public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
+    public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection? entitySel, ref EnumHandling handling)
     {
         handling = stepHandling;
 
@@ -82,14 +82,16 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
 
     public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
     {
+        api?.ModLoader.GetModSystem<ModSystemProgressBar>()?.RemoveProgressbar(progressBarRender);
+
+        handling = stopHandling;
+
         if (secondsUsed < config.ApplicationTimeSec)
         {
             handling = EnumHandling.PassThrough;
             return;
         }
 
-        api?.ModLoader.GetModSystem<ModSystemProgressBar>()?.RemoveProgressbar(progressBarRender);
-        handling = stopHandling;
         Entity targetEntity = byEntity;
         if (entitySel is not null) targetEntity = entitySel.Entity;
 
