@@ -159,9 +159,6 @@ public class BathTimeModSystem : ModSystem
 
     public override void StartClientSide(ICoreClientAPI capi)
     {
-        harmony = new Harmony(Mod.Info.ModID);
-        harmony.PatchAll();
-
         BathtimeBaseConfig<BathtimeClientConfig>.LoadStoredConfig(capi);
 
         stinkParticleSystem = new StinkParticleSystem(capi);
