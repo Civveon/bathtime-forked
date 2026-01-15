@@ -21,6 +21,12 @@ public class BathTimeModSystem : ModSystem
 
     public override void Start(ICoreAPI api)
     {
+        if (!Harmony.HasAnyPatches(Mod.Info.ModID))
+        {
+            harmony = new Harmony(Mod.Info.ModID);
+            harmony.PatchAll();
+        }
+
         api.RegisterEntityBehaviorClass(Constants.MOD_ID + ".stinky", typeof(EntityBehaviorStinky));
 
         api.RegisterItemClass(Constants.MOD_ID + ".towel", typeof(ItemTowel));

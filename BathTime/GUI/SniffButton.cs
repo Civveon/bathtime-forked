@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using HarmonyLib;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -20,6 +21,24 @@ public static class CharacterExtraDialogsPatch
     {
         var codeMatcher = new CodeMatcher(instructions);
 
+        // Find the dialog bounds operand to pass to load for ComposeSniffButton
+        codeMatcher.MatchEndForward(
+            new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(ElementBounds), "get_InnerHeight"))
+        ).MatchEndForward(
+            new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(ElementBounds), "WithFixedAlignmentOffset"))
+        ).Advance(1);
+
+        object dialogBoundsOperand = codeMatcher.Instruction.operand;
+        if (dialogBoundsOperand is null)
+        {
+            OpCode opCode = codeMatcher.Instruction.opcode;
+            if (opCode == OpCodes.Stloc_0) dialogBoundsOperand = 0;
+            if (opCode == OpCodes.Stloc_1) dialogBoundsOperand = 1;
+            if (opCode == OpCodes.Stloc_2) dialogBoundsOperand = 2;
+            if (opCode == OpCodes.Stloc_3) dialogBoundsOperand = 3;
+        }
+
+        // Add call to insert button.
         codeMatcher.MatchStartForward(
             new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(GuiComposer), "Compose", [typeof(bool)]))
         );
@@ -30,42 +49,23 @@ public static class CharacterExtraDialogsPatch
             new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(CharacterExtraDialogs), "capi")),
             new CodeInstruction(OpCodes.Ldarg_0),
             new CodeInstruction(OpCodes.Call, AccessTools.PropertyGetter(typeof(CharacterExtraDialogs), "Composers")),
+            new CodeInstruction(OpCodes.Ldloc_S, dialogBoundsOperand),
             new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(CharacterExtraDialogsPatch), nameof(ComposeSniffButton)))
         );
 
         return codeMatcher.InstructionEnumeration();
     }
 
-    private static void ComposeSniffButton(CharacterExtraDialogs __instance, ICoreClientAPI capi, DlgComposers composers)
+    private static void ComposeSniffButton(CharacterExtraDialogs __instance, ICoreClientAPI capi, DlgComposers composers, ElementBounds dialogBounds)
     {
         if (composers is null) return;
         if (!composers.ContainsKey("playerstats")) return;
         if (!composers.ContainsKey("environment")) return;
+        if (dialogBounds is null) return;
 
-        ElementBounds leftDlgBounds = composers["playercharacter"].Bounds;
-        ElementBounds botDlgBounds = composers["environment"].Bounds;
+        ElementBounds bounds = new ElementBounds().WithAlignment(EnumDialogArea.LeftBottom).WithFixedAlignmentOffset(0, 40).WithFixedSize(180, 40);
 
-        ElementBounds leftColumnBounds = ElementBounds.Fixed(0, 25, 90, 20);
-        ElementBounds rightColumnBounds = ElementBounds.Fixed(120, 30, 120, 8);
-
-        ElementBounds leftColumnBoundsW = ElementBounds.Fixed(0, 0, 140, 20);
-        ElementBounds rightColumnBoundsW = ElementBounds.Fixed(165, 0, 120, 20);
-
-        double b = botDlgBounds.InnerHeight / RuntimeEnv.GUIScale + 10;
-
-        ElementBounds bgBounds = ElementBounds
-            .Fixed(0, 0, 130 + 100 + 5, leftDlgBounds.InnerHeight / RuntimeEnv.GUIScale - GuiStyle.ElementToDialogPadding - 20 + b)
-            .WithFixedPadding(GuiStyle.ElementToDialogPadding)
-        ;
-
-        ElementBounds dialogBounds = bgBounds
-                .ForkBoundingParent()
-                .WithAlignment(EnumDialogArea.LeftMiddle)
-                .WithFixedAlignmentOffset((leftDlgBounds.renderX + leftDlgBounds.OuterWidth + 10) / RuntimeEnv.GUIScale, b / 2)
-        ;
-
-        GuiComposer playerstatsComposer = composers["playerstats"];
-        playerstatsComposer.AddSmallButton(
+        composers["playerstats"].AddSmallButton(
             Lang.Get("bathtime:sniff"),
             () =>
             {
@@ -73,7 +73,8 @@ public static class CharacterExtraDialogsPatch
                 PrintSniffAlert(capi);
                 return true;
             },
-            dialogBounds.WithAlignment(EnumDialogArea.LeftBottom).WithFixedAlignmentOffset(0, 40).WithFixedSize(180, 40)
+            bounds,
+            key: "sniff_button"
         );
     }
 
