@@ -95,6 +95,7 @@ public static class CharacterExtraDialogsPatch
 
     }
 
+    private static NormalRandom normalRandom = new(0xB0BA);
     private static void PrintSniffAlert(ICoreClientAPI capi)
     {
         EntityPlayer entityPlayer = capi.World.Player.Entity;
@@ -104,14 +105,23 @@ public static class CharacterExtraDialogsPatch
             return;
         }
 
-        string stinkinessStr = entityBehaviorStinky.Stinkiness switch
+        string stinkinessStr;
+        if (Buff.ActiveOnEntity(entityPlayer, Constants.PERFUME_BUFF_KEY))
         {
-            > 0.9 => Lang.Get("bathtime:stinkiness-level-extreme"),
-            > 0.75 => Lang.Get("bathtime:stinkiness-level-high"),
-            > 0.5 => Lang.Get("bathtime:stinkiness-level-medium"),
-            > 0.25 => Lang.Get("bathtime:stinkiness-level-low"),
-            _ => Lang.Get("bathtime:stinkiness-level-clean"),
-        };
+            stinkinessStr = "\n" + Lang.Get($"bathtime:stinkiness-level-perfume");
+        }
+        else
+        {
+            int randInt = normalRandom.NextInt(5);
+            stinkinessStr = entityBehaviorStinky.Stinkiness switch
+            {
+                > 0.9 => Lang.Get($"bathtime:stinkiness-level-extreme-{randInt}"),
+                > 0.75 => Lang.Get($"bathtime:stinkiness-level-high-{randInt}"),
+                > 0.5 => Lang.Get($"bathtime:stinkiness-level-medium-{randInt}"),
+                > 0.25 => Lang.Get($"bathtime:stinkiness-level-low-{randInt}"),
+                _ => Lang.Get($"bathtime:stinkiness-level-clean-{randInt}"),
+            };
+        }
 
         int[] msgColor = ColorUtil.Hsv2RgbInts(
             Constants.hsvaStinkBaseColor[0],

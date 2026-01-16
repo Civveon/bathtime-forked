@@ -107,14 +107,26 @@ internal class EntityBehaviorStinky : EntityBehavior
 
             if (entity.Api.Side == EnumAppSide.Server)
             {
-                // Increase detection range by up to 50% based on stinkiness.
-                entity.Stats.Set(
-                    "animalSeekingRange",
-                    Constants.STINKINESS_KEY,
-                    (float)clampedValue * (float)config.stinkinessDetectionRangeMultiplier,
-                    // Don't persist as we will just set this again next time stinkiness ticks.
-                    false
-                );
+                if (!Buff.ActiveOnEntity(entity, Constants.PERFUME_BUFF_KEY))
+                {
+                    // Increase detection range by up to 50% based on stinkiness.
+                    entity.Stats.Set(
+                        "animalSeekingRange",
+                        Constants.STINKINESS_KEY,
+                        (float)clampedValue * (float)config.stinkinessDetectionRangeMultiplier,
+                        // Don't persist as we will just set this again next time stinkiness ticks.
+                        false
+                    );
+                }
+                else
+                {
+                    entity.Stats.Set(
+                        "animalSeekingRange",
+                        Constants.STINKINESS_KEY,
+                        0.0f,
+                        false
+                    );
+                }
             }
         }
     }

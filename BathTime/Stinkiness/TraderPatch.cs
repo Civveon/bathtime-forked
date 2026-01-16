@@ -14,7 +14,7 @@ public static class TradersFleeStinkyPatch
 {
     static bool Prefix(EntityBehaviorConversable __instance, EntityAgent byEntity, ItemSlot slot, Vec3d hitPosition, EnumInteractMode mode, ref EnumHandling handled)
     {
-        if (byEntity.GetBehavior<EntityBehaviorStinky>()?.Stinkiness > 0.9)
+        if (byEntity.GetBehavior<EntityBehaviorStinky>()?.Stinkiness > 0.9 && !Buff.ActiveOnEntity(byEntity, Constants.PERFUME_BUFF_KEY))
         {
             handled = EnumHandling.PassThrough;
             if (byEntity.Api.Side == EnumAppSide.Server)
@@ -69,6 +69,7 @@ public static class TradersInsultSmellyPatch
         return codeMatcher.Instructions();
     }
 
+    private static NormalRandom normalRandom = new(0xF00D);
     static string LangGetInsertPostfixPayload(string? key, object[]? _, DlgTalkComponent? dlgTalkComponent)
     {
         if (key is null) throw new NullReferenceException();
@@ -88,13 +89,23 @@ public static class TradersInsultSmellyPatch
                 return Lang.Get(key, _);
             }
 
-            string smellResponse = entityBehaviorStinky.Stinkiness switch
+
+            string smellResponse;
+            if (Buff.ActiveOnEntity(PlayerEntity, Constants.PERFUME_BUFF_KEY))
             {
-                > 0.75 => "\nDamn you smell awful!",
-                > 0.5 => "\nYou have an... interesting aroma.",
-                > 0.25 => "\nSeems you could use a bath, friend.",
-                _ => ""
-            };
+                smellResponse = "\n" + Lang.Get($"bathtime:trader-reaction-perfume");
+            }
+            else
+            {
+                int randInt = normalRandom.NextInt(5);
+                smellResponse = entityBehaviorStinky.Stinkiness switch
+                {
+                    > 0.75 => "\n" + Lang.Get($"bathtime:trader-reaction-high-{randInt}"),
+                    > 0.5 => "\n" + Lang.Get($"bathtime:trader-reaction-medium-{randInt}"),
+                    > 0.25 => "\n" + Lang.Get($"bathtime:trader-reaction-low-{randInt}"),
+                    _ => "",
+                };
+            }
             return Lang.Get(key) + smellResponse;
         }
         else

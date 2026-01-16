@@ -26,9 +26,9 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
 
     protected EnumHandling stepHandling = EnumHandling.Handled;
 
-    protected EnumHandling cancelHandling = EnumHandling.Handled;
-
     protected EnumHandling stopHandling = EnumHandling.Handled;
+
+    protected float secondsUsedToCancel = 0;
 
     public override void Initialize(JsonObject properties)
     {
@@ -75,7 +75,6 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
 
     public override bool OnHeldInteractCancel(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, EnumItemUseCancelReason cancelReason, ref EnumHandling handled)
     {
-        handled = cancelHandling;
         api?.ModLoader.GetModSystem<ModSystemProgressBar>()?.RemoveProgressbar(progressBarRender);
         return base.OnHeldInteractCancel(secondsUsed, slot, byEntity, blockSel, entitySel, cancelReason, ref handled);
     }
@@ -83,10 +82,9 @@ public class CollectibleBehaviorToiletry<TModifier, TConfig>(CollectibleObject c
     public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
     {
         api?.ModLoader.GetModSystem<ModSystemProgressBar>()?.RemoveProgressbar(progressBarRender);
-
         handling = stopHandling;
 
-        if (secondsUsed < config.ApplicationTimeSec)
+        if (secondsUsed < config.ApplicationTimeSec - 0.3f)
         {
             handling = EnumHandling.PassThrough;
             return;
