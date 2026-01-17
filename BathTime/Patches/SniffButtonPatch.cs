@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using System.Runtime.CompilerServices;
 using HarmonyLib;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -13,7 +12,7 @@ namespace BathTime;
 
 
 [HarmonyPatch(typeof(CharacterExtraDialogs))]
-public static class CharacterExtraDialogsPatch
+public static class SniffButtonPatch
 {
     [HarmonyPatch("ComposeStatsGui")]
     [HarmonyTranspiler]
@@ -50,7 +49,7 @@ public static class CharacterExtraDialogsPatch
             new CodeInstruction(OpCodes.Ldarg_0),
             new CodeInstruction(OpCodes.Call, AccessTools.PropertyGetter(typeof(CharacterExtraDialogs), "Composers")),
             new CodeInstruction(OpCodes.Ldloc_S, dialogBoundsOperand),
-            new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(CharacterExtraDialogsPatch), nameof(ComposeSniffButton)))
+            new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(SniffButtonPatch), nameof(ComposeSniffButton)))
         );
 
         return codeMatcher.InstructionEnumeration();

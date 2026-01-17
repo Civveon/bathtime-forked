@@ -31,18 +31,23 @@ internal class EntityBehaviorStinky : EntityBehavior
     /// <returns></returns>
     public static bool IsBathing(Entity entity)
     {
+        var pos = entity.Pos.AsBlockPos;
         var inBlock = entity.Api.World.BlockAccessor.GetBlockRaw(
-            entity.Pos.AsBlockPos.X,
-            entity.Pos.AsBlockPos.InternalY,
-            entity.Pos.AsBlockPos.Z
+            pos.X,
+            pos.InternalY,
+            pos.Z
         );
-        return (
-            entity.FeetInLiquid &&
-            inBlock.BlockMaterial == EnumBlockMaterial.Liquid &&
-            (
-                inBlock.Code.Path.Contains("water")
-            )
-        );
+
+        if (entity.FeetInLiquid && inBlock.BlockMaterial == EnumBlockMaterial.Liquid && inBlock.Code.Path.Contains("water"))
+        {
+            return true;
+        }
+        else if (BlockEntityBehaviorBathingSpot.IsBathingSpotAtPos(entity.Api.World, pos))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>

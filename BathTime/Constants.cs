@@ -38,6 +38,8 @@ internal static class Constants
 
     public static string LAST_STINKINESS_UPDATE_KEY = "last_stinkiness_update";
 
+    public static string MIN_BATHING_SPOT_VOLUME_KEY = "minBathingSpotVolume";
+
     public static double DEFAULT_STINK_PARTICLE_THRESHOLD = 0.4375;
 
     public static double DEFAULT_FLIES_PARTICLE_THRESHOLD = 0.90;
