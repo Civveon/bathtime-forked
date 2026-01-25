@@ -10,7 +10,7 @@ namespace BathTime;
 
 public partial class BathtimeConfig : IConfig
 {
-    public double bathingRateModifier { get; set; } = -5.0;
+    public double bathingRateModifier { get; set; } = -20.0;
 
     public double bathingInsideRateModifier { get; set; } = -50.0;
 
