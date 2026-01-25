@@ -3,8 +3,10 @@
     "soap-item-info": "Use this while bathing\nApplication time: {0}\nSoapy duration: {1}\nStink rate reduction: {2}",
     "perfume-item-info": "Application time: {0}\nPerfuming cooldown: {1}\nStinkiness reduction: {2}",
     "heldhelp-soap": "Soap up!",
-    "heldhelp-soap-notbathing": "Use with a bath.",
+    "heldhelp-soap-notbathing": "Use with a bath",
     "heldhelp-perfume": "Apply perfume",
+    "blockhelp-bath-rightclick": "Bathe",
+    "blockhelp-bath-soap": "Soap up!",
     // Stink levels
     "stinkiness-level-extreme-0": "You reek like a corpse.",
     "stinkiness-level-extreme-1": "Flies are starting to follow you around.",

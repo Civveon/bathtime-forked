@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using HarmonyLib;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -94,6 +95,58 @@ public static class BlockLiquidContainerPatch
         }
     }
 
+    [HarmonyPatch(typeof(Block))]
+    public static class BlockLiquidContainerBaseInteractionHelpPatch
+    {
+        [HarmonyPatch(nameof(Block.GetPlacedBlockInteractionHelp))]
+        public static void Postfix(ref WorldInteraction[] __result, Block __instance, IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
+        {
+            if (__instance is not BlockLiquidContainerBase) return;
+            if (world.Side == EnumAppSide.Server) return;
+
+            ICoreClientAPI capi = (ICoreClientAPI)world.Api;
+
+            if (BlockIsValidBath(world, selection, (BlockLiquidContainerBase)__instance))
+            {
+                __result = __result.Append(new WorldInteraction
+                {
+                    ActionLangCode = "bathtime:blockhelp-bath-rightclick",
+                    HotKeyCode = "shift",
+                    MouseButton = EnumMouseButton.Right,
+                    RequireFreeHand = true,
+                });
+
+                __result = __result.Append(new WorldInteraction
+                {
+                    ActionLangCode = "bathtime:blockhelp-bath-soap",
+                    MouseButton = EnumMouseButton.Right,
+                    Itemstacks = ObjectCacheUtil.GetOrCreate(
+                        world.Api,
+                        "liquidContainerBaseSoap",
+                        delegate
+                        {
+                            List<ItemStack> list = new();
+                            foreach (CollectibleObject collectible in world.Collectibles)
+                            {
+                                if (collectible.HasBehavior<CollectibleBehaviorSoap>())
+                                {
+                                    List<ItemStack> handBookStacks = collectible.GetHandBookStacks(capi);
+                                    if (handBookStacks != null)
+                                    {
+                                        list.AddRange(handBookStacks);
+                                    }
+                                }
+                            }
+
+                            ItemStack[] lstacks = [.. list];
+                            return lstacks;
+                        }
+                    )
+                });
+            }
+        }
+    }
+
     private static void ApplyBathing(BlockLiquidContainerBase container, BlockSelection blockSel, IPlayer byPlayer)
     {
         ItemStack? contentStack = container.GetContent(blockSel.Position);
@@ -112,6 +165,12 @@ public static class BlockLiquidContainerPatch
         if (api.Side == EnumAppSide.Server)
         {
             container.TryTakeContent(blockSel.Position, (int)props.ItemsPerLitre);
+        }
+
+        // Make the player wet.
+        if (byPlayer.Entity.GetBehavior<EntityBehaviorBodyTemperature>() is EntityBehaviorBodyTemperature bodyTemperature)
+        {
+            bodyTemperature.Wetness = 1;
         }
 
         // Play bathing animation.
