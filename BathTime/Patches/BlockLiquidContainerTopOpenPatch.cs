@@ -26,6 +26,10 @@ public static class BlockLiquidContainerPatch
         [HarmonyPatch(nameof(BlockLiquidContainerBase.OnBlockInteractStart))]
         public static void Postfix(ref bool __result, BlockLiquidContainerBase __instance, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
+            // Used to prevent players spamming the first bathing tick. We clean up entries
+            // in the dictionary with a callback delay after the interaction stops.
+            if (BathingSecondsByPlayer.ContainsKey(byPlayer.PlayerUID + world.Side.ToString())) return;
+
             // Check player is stinky, sneaking with empty hand, and block is valid.
             ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
             if (hotbarSlot is null) return;
@@ -38,6 +42,8 @@ public static class BlockLiquidContainerPatch
                 byPlayer.Entity.HasBehavior<EntityBehaviorStinky>()
             )
             {
+                ApplyBathing(__instance, blockSel, byPlayer);
+                BathingSecondsByPlayer.Add(byPlayer.PlayerUID + world.Side.ToString(), 0);
                 __result = true;
             }
         }
@@ -92,6 +98,12 @@ public static class BlockLiquidContainerPatch
 
             // Disable bathing override flag.
             entityBehaviorStinky.isBathingOverride = false;
+
+            // Register callback to forget player so they can start bathing again.
+            world.Api.Event.RegisterCallback(
+                (_) => BathingSecondsByPlayer.Remove(byPlayer.PlayerUID + world.Side.ToString()),
+                (int)(1000 * GetSecondsToBathe(byPlayer.Entity))
+            );
         }
     }
 
