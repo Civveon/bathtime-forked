@@ -16,7 +16,7 @@ public partial class BathtimeConfig : IConfig
 
     public bool bathingUseBodyTemperature { get; set; } = true;
 
-    public double bathingWithBoilerMultiplier { get; set; } = 1.4;
+    public double bathingWithBoilerMultiplier { get; set; } = 2.0;
 
     public float bathingMaxHealingPerSecond { get; set; } = 0.05f;
 }
