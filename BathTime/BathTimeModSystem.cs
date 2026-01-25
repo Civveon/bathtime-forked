@@ -44,6 +44,7 @@ public class BathTimeModSystem : ModSystem
     {
         player.Entity.SetDoubleAttribute(Constants.STINK_PARTICLE_THRESHOLD_KEY, config.stinkParticleThreshold);
         player.Entity.SetDoubleAttribute(Constants.FLIES_PARTICLE_THRESHOLD_KEY, config.fliesParticleThreshold);
+        player.Entity.SetFloatAttribute(Constants.SECONDS_TO_BATHE_KEY, config.secondsToBatheInBucketPortion);
     }
 
     public override void StartServerSide(ICoreServerAPI sapi)

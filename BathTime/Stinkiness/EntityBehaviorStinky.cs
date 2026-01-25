@@ -32,6 +32,8 @@ internal class EntityBehaviorStinky : EntityBehavior
     /// <returns></returns>
     public static bool IsBathing(Entity entity)
     {
+        if (entity.GetBehavior<EntityBehaviorStinky>()?.isBathingOverride == true) return true;
+
         var pos = entity.Pos.AsBlockPos;
         var inBlock = entity.Api.World.BlockAccessor.GetBlockRaw(
             pos.X,
@@ -50,6 +52,8 @@ internal class EntityBehaviorStinky : EntityBehavior
 
         return false;
     }
+
+    public bool isBathingOverride { get; set; } = false;
 
     /// <summary>
     /// Rate multiplier for increment of stinkiness. Linearly multiplies rate at which normalized time advances.

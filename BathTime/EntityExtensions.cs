@@ -28,6 +28,20 @@ public static class EntityExtensions
         entity.WatchedAttributes.MarkPathDirty(Constants.MOD_ID);
     }
 
+
+    public static float GetFloatAttribute(this Entity entity, string key, float defaultValue = 0.0f)
+    {
+        ITreeAttribute treeAttribute = GetTreeAttribute(entity);
+        return treeAttribute.GetFloat(key, defaultValue);
+    }
+
+    public static void SetFloatAttribute(this Entity entity, string key, float value)
+    {
+        ITreeAttribute treeAttribute = GetTreeAttribute(entity);
+        treeAttribute.SetFloat(key, value);
+        entity.WatchedAttributes.MarkPathDirty(Constants.MOD_ID);
+    }
+
     public static bool GetBoolAttribute(this Entity entity, string key, bool defaultValue = false)
     {
         ITreeAttribute treeAttribute = GetTreeAttribute(entity);
