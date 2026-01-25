@@ -4,6 +4,7 @@ using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.Server;
 
 namespace BathTime;
 
@@ -148,23 +149,33 @@ internal class EntityBehaviorStinky : EntityBehavior
     public override void OnGameTick(float dt)
     {
         // Server handles updating attributes.
-        if (entity.Api.Side == EnumAppSide.Server)
+        if (!(entity.Api.Side == EnumAppSide.Server)) return;
+
+        ICoreServerAPI sapi = (ICoreServerAPI)entity.Api;
+        if (
+            config.stinkinessDisabledInCreative &&
+            (entity is EntityPlayer entityPlayer) &&
+            (entityPlayer.Player.WorldData.CurrentGameMode == EnumGameMode.Creative)
+        )
         {
-            rateMultiplier = 1.0;
-            foreach (var modifier in rateModifiers.Values.OrderBy(mod => mod.stinkyPriority))
-            {
-                if (modifier.IsActive)
-                {
-                    rateMultiplier = modifier.ModifyRate(rateMultiplier);
-                }
-            }
-            double delta = (entity.World.Calendar.TotalDays - lastUpdatedDays) / config.maxStinkinessDays;
-            double normalizedStartTime = 1 - Math.Sqrt(1 - Stinkiness);
-            // For large deltas, normalizedEndTime can exceed 1 and must be clamped.
-            double normalizedEndTime = Math.Clamp(normalizedStartTime + rateMultiplier * delta, 0, 1);
-            Stinkiness = normalizedEndTime * (2 - normalizedEndTime);
-            lastUpdatedDays = entity.World.Calendar.TotalDays;
+            Stinkiness = 0.0;
+            return;
         }
+
+        rateMultiplier = 1.0;
+        foreach (var modifier in rateModifiers.Values.OrderBy(mod => mod.stinkyPriority))
+        {
+            if (modifier.IsActive)
+            {
+                rateMultiplier = modifier.ModifyRate(rateMultiplier);
+            }
+        }
+        double delta = (entity.World.Calendar.TotalDays - lastUpdatedDays) / config.maxStinkinessDays;
+        double normalizedStartTime = 1 - Math.Sqrt(1 - Stinkiness);
+        // For large deltas, normalizedEndTime can exceed 1 and must be clamped.
+        double normalizedEndTime = Math.Clamp(normalizedStartTime + rateMultiplier * delta, 0, 1);
+        Stinkiness = normalizedEndTime * (2 - normalizedEndTime);
+        lastUpdatedDays = entity.World.Calendar.TotalDays;
     }
 
     public override string PropertyName()
