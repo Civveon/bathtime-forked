@@ -10,7 +10,7 @@ public class Buff
 
     private string identifier;
 
-    private long listenerId;
+    private long? listenerId;
 
     protected double durationHours { get; set; }
 
@@ -25,6 +25,7 @@ public class Buff
 
     public virtual void Apply(double durationHours)
     {
+        OnEnd();
         this.durationHours = durationHours;
         lastUpdated = entity.Api.World.Calendar.TotalHours;
         listenerId = entity.Api.Event.RegisterGameTickListener(
@@ -56,7 +57,7 @@ public class Buff
     {
         durationHours = 0.0f;
         entity.SetBoolAttribute(identifier, false);
-        entity.Api.Event.UnregisterGameTickListener(listenerId);
+        if (listenerId is not null) entity.Api.Event.UnregisterGameTickListener((long)listenerId);
     }
 
     public static bool ActiveOnEntity(Entity entity, string identifier)
