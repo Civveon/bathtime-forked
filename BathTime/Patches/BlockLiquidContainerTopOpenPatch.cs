@@ -19,6 +19,7 @@ public partial class BathtimeConfig
 public static class BlockLiquidContainerPatch
 {
     private static readonly ConcurrentSmallDictionary<string, float> BathingSecondsByPlayer = [];
+    private static readonly ConcurrentSmallDictionary<string, long> CallbackIdByPlayer = [];
 
     [HarmonyPatch(typeof(BlockLiquidContainerBase))]
     public static class BlockLiquidContainerBaseInteractStartPatch
@@ -83,27 +84,6 @@ public static class BlockLiquidContainerPatch
                 __result = true;
                 return;
             }
-        }
-    }
-
-    [HarmonyPatch(typeof(Block))]
-    public static class BlockLiquidContainerBaseInteractStopPatch
-    {
-        [HarmonyPatch(nameof(Block.OnBlockInteractStop))]
-        public static void Postfix(Block __instance, float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
-        {
-            if (__instance is not BlockLiquidContainerBase) return;
-            EntityBehaviorStinky? entityBehaviorStinky = byPlayer.Entity.GetBehavior<EntityBehaviorStinky>();
-            if (entityBehaviorStinky is null) return;
-
-            // Disable bathing override flag.
-            entityBehaviorStinky.isBathingOverride = false;
-
-            // Register callback to forget player so they can start bathing again.
-            world.Api.Event.RegisterCallback(
-                (_) => BathingSecondsByPlayer.Remove(byPlayer.PlayerUID + world.Side.ToString()),
-                (int)(1000 * GetSecondsToBathe(byPlayer.Entity))
-            );
         }
     }
 
@@ -214,6 +194,27 @@ public static class BlockLiquidContainerPatch
                 byPlayer.Entity.AnimManager.StartAnimation("cough");
             }
         }
+
+        // Register callback to forget player so they can start bathing again.
+        if (CallbackIdByPlayer.ContainsKey(byPlayer.PlayerUID + api.World.Side.ToString()))
+        {
+            api.Event.UnregisterCallback(CallbackIdByPlayer.Get(byPlayer.PlayerUID + api.World.Side.ToString()));
+        }
+        CallbackIdByPlayer.Remove(byPlayer.PlayerUID + api.World.Side.ToString());
+        long callbackId = api.Event.RegisterCallback(
+            (_) =>
+            {
+                if (byPlayer is null) return;
+                EntityBehaviorStinky? entityBehaviorStinky = byPlayer.Entity.GetBehavior<EntityBehaviorStinky>();
+                if (entityBehaviorStinky is null) return;
+                BathingSecondsByPlayer.Remove(byPlayer.PlayerUID + api.World.Side.ToString());
+
+                // Disable bathing override flag.
+                entityBehaviorStinky.isBathingOverride = false;
+            },
+            (int)(1000 * GetSecondsToBathe(byPlayer.Entity))
+        );
+        CallbackIdByPlayer.Add(byPlayer.PlayerUID + api.World.Side.ToString(), callbackId);
     }
 
     public static bool BlockIsValidBath(IWorldAccessor world, BlockSelection blockSel, BlockLiquidContainerBase blockLiquidContainer)
