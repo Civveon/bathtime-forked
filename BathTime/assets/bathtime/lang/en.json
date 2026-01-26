@@ -7,6 +7,7 @@
     "heldhelp-perfume": "Apply perfume",
     "blockhelp-bath-rightclick": "Bathe",
     "blockhelp-bath-soap": "Soap up!",
+    "bath-indicator": "<font color=\"#6bb9c9\">Taking a bath</font>",
     // Stink levels
     "stinkiness-level-extreme-0": "You reek like a corpse.",
     "stinkiness-level-extreme-1": "Flies are starting to follow you around.",
