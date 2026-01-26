@@ -11,10 +11,7 @@ namespace BathTime;
 public partial class BathtimeConfig : IConfig
 {
     public double stinkinessDetectionRangeMultiplier { get; set; } = 0.5f;
-}
 
-public partial class BathtimeConfig : IConfig
-{
     public double maxStinkinessDays { get; set; } = 2.0;
 }
 
@@ -35,11 +32,7 @@ internal class EntityBehaviorStinky : EntityBehavior
         if (entity.GetBehavior<EntityBehaviorStinky>()?.isBathingOverride == true) return true;
 
         var pos = entity.Pos.AsBlockPos;
-        var inBlock = entity.Api.World.BlockAccessor.GetBlockRaw(
-            pos.X,
-            pos.InternalY,
-            pos.Z
-        );
+        var inBlock = entity.Api.World.BlockAccessor.GetBlock(pos, BlockLayersAccess.Fluid);
 
         if (entity.FeetInLiquid && inBlock.BlockMaterial == EnumBlockMaterial.Liquid && inBlock.Code.Path.Contains("water"))
         {
