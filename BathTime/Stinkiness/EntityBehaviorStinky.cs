@@ -187,6 +187,10 @@ internal class EntityBehaviorStinky : EntityBehavior
     /// <param name="attributes"></param>
     public override void Initialize(EntityProperties properties, JsonObject attributes)
     {
+        if (!entity.WatchedAttributes.HasAttribute(Constants.MOD_ID))
+        {
+            entity.WatchedAttributes.SetAttribute(Constants.MOD_ID, new TreeAttribute());
+        }
         Stinkiness = 0;
         lastUpdatedDays = entity.World.Calendar.TotalDays;
     }
