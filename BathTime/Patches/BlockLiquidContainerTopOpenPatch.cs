@@ -220,10 +220,12 @@ public static class BlockLiquidContainerPatch
     public static bool BlockIsValidBath(IWorldAccessor world, BlockSelection blockSel, BlockLiquidContainerBase blockLiquidContainer)
     {
         return (
-            blockLiquidContainer is BlockLiquidContainerTopOpened
-            || (
-                world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBarrel beb
-                && beb.Sealed == false
+            (
+                blockLiquidContainer is BlockLiquidContainerTopOpened
+                || (
+                    world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityBarrel beb
+                    && beb.Sealed == false
+                )
             )
             && (
                 blockLiquidContainer.GetContent(blockSel.Position) is ItemStack contents
