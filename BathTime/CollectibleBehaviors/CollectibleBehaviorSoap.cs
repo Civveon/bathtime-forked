@@ -22,9 +22,12 @@ public class CollectibleBehaviorSoap(CollectibleObject collObj) : CollectibleBeh
 {
     protected bool PlayerBlockSelectionIsValidBath(IWorldAccessor world, IPlayer player)
     {
+        if (world is null || player is null) return false;
         return (
+            // Player has a block selected
+            player.CurrentBlockSelection?.Block is Block block
             // Player is selecting a liquid container.
-            player.CurrentBlockSelection.Block is BlockLiquidContainerBase blockLiquidContainer
+            && block is BlockLiquidContainerBase blockLiquidContainer
             // Liquid container is a valid bath.
             && BlockLiquidContainerPatch.BlockIsValidBath(
                 world,
