@@ -5,15 +5,16 @@
     "name": "BathTime",
     "authors": [
         "Shantari",
-        "berserkus"
+        "berserkus",
+        "Civveon"
     ],
     "description": "Time to take a bath.",
-    "version": "1.3.1",
+    "version": "1.4.0",
     "dependencies": {
-        "game": "1.21.0"
+        "game": "1.22.2"
     },
     "side": "Universal",
-    "website": "https://github.com/gcassella/bathtime",
+    "website": "https://github.com/Civveon/bathtime-forked",
     "requiredOnClient": true,
     "requiredOnServer": true
 }

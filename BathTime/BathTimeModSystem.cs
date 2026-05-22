@@ -39,6 +39,7 @@ public class BathTimeModSystem : ModSystem
 
         GlobalConstants.IgnoredStackAttributes = GlobalConstants.IgnoredStackAttributes.AddToArray(Constants.TOWEL_WETNESS_KEY);
     }
+    
 
     private void SyncConfigToPlayer(IPlayer player, BathtimeConfig config)
     {

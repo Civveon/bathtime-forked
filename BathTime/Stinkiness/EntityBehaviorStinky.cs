@@ -34,7 +34,7 @@ internal class EntityBehaviorStinky : EntityBehavior
         var pos = entity.Pos.AsBlockPos;
         var inBlock = entity.Api.World.BlockAccessor.GetBlock(pos, BlockLayersAccess.Fluid);
 
-        if (entity.FeetInLiquid && inBlock.BlockMaterial == EnumBlockMaterial.Liquid && inBlock.Code.Path.Contains("water"))
+        if (entity.FeetInLiquid && inBlock.BlockMaterial == EnumBlockMaterial.Water && inBlock.Code.Path.Contains("water"))
         {
             return true;
         }
